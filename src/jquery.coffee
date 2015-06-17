@@ -15,11 +15,18 @@ Core = (selector, context) ->
 
 Core.prototype =
   addClass: (cName) ->
-    @get(0).className = cName
+    arr = @get(0).className.split(" ")
+    return if arr.indexOf(cName) > -1
+    arr.push(cName)
+    @get(0).className = arr.join " "
 
   removeClass: (cName) ->
-    console.log @get(0).className.split(" ")
-    @get(0).className = @get(0).className.replace(cName, '')
+    arr = @get(0).className.split(" ")
+    return if arr.indexOf(cName) is -1
+    classArray = []
+    for c in arr
+      classArray.push(c) if c != cName and c != ""
+    @get(0).className = classArray.join " "
 
 
 
