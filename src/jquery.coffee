@@ -15,18 +15,26 @@ Core = (selector, context) ->
 
 Core.prototype =
   addClass: (cName) ->
-    arr = @get(0).className.split(" ")
-    return if arr.indexOf(cName) > -1
-    arr.push(cName)
-    @get(0).className = arr.join " "
+    for i in @
+      arr = i.className.split(" ")
+      continue if arr.indexOf(cName) > -1
+      if arr[0] is "" then arr[0] = cName else arr.push(cName)
+      i.className = if arr.length is 1 then arr[0] else arr.join " "
 
   removeClass: (cName) ->
-    arr = @get(0).className.split(" ")
-    return if arr.indexOf(cName) is -1
-    classArray = []
-    for c in arr
-      classArray.push(c) if c != cName and c != ""
-    @get(0).className = classArray.join " "
+    for i in @
+      arr = i.className.split(" ")
+      continue if arr.indexOf(cName) is -1
+      classArray = []
+      for c in arr
+        classArray.push(c) if c != cName and c != ""
+      i.className = classArray.join " "
+
+  hasClass: (cName) ->
+    for i in @
+      arr = i.className.split(" ")
+      return true if arr.indexOf(cName) > -1
+    false
 
 
 
