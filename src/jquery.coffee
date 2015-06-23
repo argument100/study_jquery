@@ -30,8 +30,8 @@ Core.prototype =
       continue if classArr.indexOf(value) > -1
       if classArr[0] is "" then classArr[0] = value else classArr.push(value)
       i.className = if classArr.length is 1 then classArr[0] else classArr.join " "
+    console.log @.get(0).className
     @
-
 
   removeClass: (value) ->
     value = @trim value

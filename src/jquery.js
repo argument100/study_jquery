@@ -48,6 +48,7 @@
         }
         i.className = classArr.length === 1 ? classArr[0] : classArr.join(" ");
       }
+      console.log(this.get(0).className);
       return this;
     },
     removeClass: function(value) {
